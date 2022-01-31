@@ -33,4 +33,3 @@ sites_data = list("simulation_sites" = lat_lon,
 
 saveRDS(sites_data,"Environment/General/Env_data.rds")
 
-
