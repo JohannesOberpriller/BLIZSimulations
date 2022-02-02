@@ -48,15 +48,15 @@ for(projection in projections){
           years = rep(2051:2100,each = 12)
           months = rep(1:12, 50)
         }
-        climate_site = matrix(nrow = 600, ncol = 5)
+        climate_site = matrix(nrow = 600, ncol = 7)
         colnames(climate_site) = c("year","month","tmp_min","tmp_max","prcp","srad","frost_days")
         
         climate_site[,"year"] = years
-        cliamte_site[,"month"] = months
+        climate_site[,"month"] = months
         climate_site[,"tmp_min"] = tasmin[lon_index,lat_index, timepoints]-273.15
         climate_site[,"tmp_max"] = tasmax[lon_index,lat_index, timepoints]-273.15
         climate_site[,"prcp"] = precip[lon_index,lat_index, timepoints]
-        #climate_site[,"srad"] = tasmin[lon_index,lat_index, timepoints]
+        climate_site[,"srad"] = 15 #tasmin[lon_index,lat_index, timepoints]
         climate_site[,"frost_days"] = frostdays[lon_index,lat_index, timepoints]
         climate[[site]] = climate_site
       }
