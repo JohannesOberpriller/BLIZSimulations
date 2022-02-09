@@ -28,6 +28,8 @@ for(projection in projections){
     tasmin <- ncvar_get(tasmin_nc, "tasmin") 
     tasmax_nc = ncdf4::nc_open(paste0(target_folder,"tasmax.nc"))
     tasmax <- ncvar_get(tasmax_nc, "tasmax") 
+    solrad_nc = ncdf4::nc_open(paste0(target_folder,"solrad.nc"))
+    solrad <- ncvar_get(solrad_nc, "rsds") 
     for(time_interval in time_intervals){
       climate = list()
       for(site in 1:nrow(simulation_sites)){
@@ -56,7 +58,7 @@ for(projection in projections){
         climate_site[,"tmp_min"] = tasmin[lon_index,lat_index, timepoints]-273.15
         climate_site[,"tmp_max"] = tasmax[lon_index,lat_index, timepoints]-273.15
         climate_site[,"prcp"] = precip[lon_index,lat_index, timepoints]
-        climate_site[,"srad"] = 15 #tasmin[lon_index,lat_index, timepoints]
+        climate_site[,"srad"] = solrad[lon_index,lat_index, timepoints]*86400*1E-6
         climate_site[,"frost_days"] = frostdays[lon_index,lat_index, timepoints]
         climate[[site]] = climate_site
       }
@@ -66,5 +68,6 @@ for(projection in projections){
     nc_close(frostdays_nc)
     nc_close(tasmin_nc)
     nc_close(tasmax_nc)
+    nc_close(solrad_nc)
   }
 }
