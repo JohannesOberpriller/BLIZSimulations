@@ -3,5 +3,6 @@
 .RData
 .Ruserdata
 Bavarian_Data/
-Environment/
-
+Environment/*
+!Environment/General/
+!Environment/General/Env_data.rds
